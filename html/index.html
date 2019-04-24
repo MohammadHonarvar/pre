@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>HTML ImageMap resizing example</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="iFrame message passing test">
+	<meta name="viewport" content="width=device-width"></head>
+	<style type="text/css">
+	
+	.credits{
+		margin: 25px auto;
+		font-size: 11px;
+		font-style: italic;
+		text-align: center;
+	}
+
+	</style>
+<body>
+	<p>
+		<img name="usaMap" src="../images/product-categories-type-1.jpg" usemap="#m_usaMap" border="0" width="100%">
+	</p>
+
+	<map name="m_usaMap">
+
+		<!-- A -->
+		<area shape="poly" coords="65 365,941 365,941 1045,65 1045" href="http://en.wikipedia.org/wiki/Alabama" title="Alabama">
+	</map>
+
+
+	<p class="credits">
+		JavaScript &copy; David J. Bradshaw - <a href="https://github.com/davidjbradshaw/imagemap-resizer">https://github.com/davidjbradshaw/imagemap-resizer</a>.
+		<br>
+		HTML imageMap example from <a href="http://html.cita.illinois.edu/text/map/map-example.php">http://html.cita.illinois.edu/text/map/map-example.php</a>  (Permission requested).
+	</p>
+	<!--[if lte IE 8]>
+		<script type="text/javascript" src="../js/ie8.polyfil.min.js"></script>
+	<![endif]-->
+	
+	<script type="text/javascript" src="./imageMapResizer.js"></script>
+	<script type="text/javascript">
+
+		imageMapResize();
+
+	</script>
+
+</body>
+</html>
