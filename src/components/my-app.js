@@ -22,6 +22,8 @@ import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
+import './my-header';
+import './my-footer';
 
 class MyApp extends LitElement {
   static get properties() {
@@ -184,6 +186,7 @@ class MyApp extends LitElement {
     // Anything that's related to rendering should be done in here.
     return html`
       <!-- Header -->
+      <my-header active></my-header>
 
       <!-- Drawer content -->
       <app-drawer
@@ -208,7 +211,7 @@ class MyApp extends LitElement {
         <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
       </main>
 
-
+      <my-footer active></my-footer>
       <snack-bar ?active="${this._snackbarOpened}">
         You are now ${this._offline ? 'offline' : 'online'}.
       </snack-bar>
@@ -296,7 +299,7 @@ class MyApp extends LitElement {
         break;
       case 'view5':
       import('../components/my-view5.js');
-      break;
+        break;
       default:
         page = 'view404';
         import('../components/my-view404.js');
