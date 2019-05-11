@@ -11,6 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 import { html, css } from 'lit-element';
 // import { Test } from './Test.js';
 import { PageViewElement } from './page-view-element.js';
+import { imageMapResize } from './imageMapResize.js'
 
 
 // // These are the elements needed by this element.
@@ -18,7 +19,13 @@ import { PageViewElement } from './page-view-element.js';
 // import './shop-cart.js';
 
 class MyView4 extends PageViewElement {
-
+  firstUpdated() {
+    imageMapResize({
+      parent: this.shadowRoot,
+      image: this.shadowRoot.querySelector("img"),
+      map: this.shadowRoot.querySelector("map")
+    })   
+  }
   render() {
     return html`
         <p>

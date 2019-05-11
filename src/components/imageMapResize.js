@@ -4,13 +4,14 @@
  *  License: MIT
  */
 
-(function(){
+export var imageMapResize  = (function(options) {
 
-    'use strict';
+    // console.log(document.body.querySelector('my-app').shadowRoot);
 
-    function scaleImageMap(){
+    
+    function scaleImageMap() {
         function resizeMap() {
-            function resizeAreaTag(cachedAreaCoords){
+            function resizeAreaTag(cachedAreaCoords) {
                 function scaleCoord(e){
                     return e * scallingFactor[(1===(isWidth = 1-isWidth) ? 'width' : 'height')];
                 }
@@ -30,18 +31,21 @@
             }
         }
 
-        function start(){
+        function start() {
             //WebKit asyncs image loading, so we have to catch the load event.
-            sourceImage.onload = function sourceImageOnLoadF(){
+            sourceImage.onload = function sourceImageOnLoadF() {
                 if ((displayedImage.width !== sourceImage.width) || (displayedImage.height !== sourceImage.height)) {
                     resizeMap();
                 }
             };
             //Make copy of image, so we can get the actual size measurements
             sourceImage.src = displayedImage.src;
+
+            console.log("asdas")
+
         }
 
-        function listenForResize(){
+        function listenForResize() {
             function debounce() {
                 clearTimeout(timer);
                 timer = setTimeout(resizeMap, 250);
@@ -50,18 +54,19 @@
             else if (window.attachEvent) { window.attachEvent('onresize', debounce); }
         }
 
-        function getCoords(e){
+        function getCoords(e) {
             // normalize coord-string to csv format without any space chars
+            console.log(e);
             return e.coords.replace(/ *, */g,',').replace(/ +/g,',');
         }
 
         var
             /*jshint validthis:true */
-            map                   = this, 
+            map                   = options.map, 
             areas                 = map.getElementsByTagName('area'),
             areasLen              = areas.length,
             cachedAreaCoordsArray = Array.prototype.map.call(areas, getCoords),
-            displayedImage        = document.querySelector('img[usemap="#'+map.name+'"]'),
+            displayedImage        = options.parent.querySelector('img[usemap="#'+map.name+'"]'),
             sourceImage           = new Image(),
             timer                 = null;
 
@@ -71,8 +76,8 @@
 
 
 
-    function factory(){
-        function init(element){
+    function factory() {
+        function init(element) {
             if(!element.tagName) {
                 throw new TypeError('Object is not a valid DOM element');
                 alert("#1")
@@ -84,12 +89,13 @@
             scaleImageMap.call(element);
         }
 
-        return function imageMapResizeF(target){
-            switch (typeof(target)){
+        return function imageMapResizeF(target) {
+            console.log('target');
+            switch (typeof(target)) {
                 case 'undefined':
                 case 'string':
-                    console.log(document.querySelectorAll(target||'map'));
-                    Array.prototype.forEach.call(document.querySelectorAll(target||'map'),init);
+                    console.log(options.parent.querySelectorAll(target||'map'));
+                    Array.prototype.forEach.call(options.parent.querySelectorAll(target||'map'),init);
                     break;
                 case 'object':
                     init(target);
@@ -106,9 +112,7 @@
     } else if (typeof exports === 'object') { //Node for browserfy
         module.exports = factory();
     } else {
-        window.imageMapResize = factory();
-        alert(1);
+        const runMapResizer = factory();
+        runMapResizer();
     }
-
-
-})();
+});
