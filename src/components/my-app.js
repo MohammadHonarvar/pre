@@ -22,6 +22,8 @@ import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
+import './my-header';
+import './my-footer';
 
 class MyApp extends LitElement {
   static get properties() {
@@ -184,6 +186,7 @@ class MyApp extends LitElement {
     // Anything that's related to rendering should be done in here.
     return html`
       <!-- Header -->
+      <my-header active></my-header>
 
       <!-- Drawer content -->
       <app-drawer
@@ -194,6 +197,7 @@ class MyApp extends LitElement {
           <a ?selected="${this._page === 'view2'}" href="/view2">View Two</a>
           <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
           <a ?selected="${this._page === 'view4'}" href="/view4">View Four</a>
+          <a ?selected="${this._page === 'view5'}" href="/view5">View Four</a>
         </nav>
       </app-drawer>
 
@@ -203,10 +207,11 @@ class MyApp extends LitElement {
         <my-view2 class="page" ?active="${this._page === 'view2'}"></my-view2>
         <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
         <my-view4 class="page" ?active="${this._page === 'view4'}"></my-view4>
+        <my-view5 class="page" ?active="${this._page === 'view5'}"></my-view5>
         <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
       </main>
 
-
+      <my-footer active></my-footer>
       <snack-bar ?active="${this._snackbarOpened}">
         You are now ${this._offline ? 'offline' : 'online'}.
       </snack-bar>
@@ -290,8 +295,11 @@ class MyApp extends LitElement {
         import('../components/my-view3.js');
         break;
       case 'view4':
-      import('../components/my-view4.js');
-      break;
+        import('../components/my-view4.js');
+        break;
+      case 'view5':
+      import('../components/my-view5.js');
+        break;
       default:
         page = 'view404';
         import('../components/my-view404.js');

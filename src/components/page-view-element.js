@@ -9,11 +9,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 */
 
 import { LitElement } from 'lit-element';
+import './imageMapResizer';
 
 export class PageViewElement extends LitElement {
   // Only render this page if it's actually visible.
   shouldUpdate() {
     return this.active;
+  }
+
+  firstUpdated() {
+    // alert('firstUpdated');
+    imageMapResize();
   }
 
   static get properties() {

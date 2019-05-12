@@ -17,20 +17,20 @@ import { PageViewElement } from './page-view-element.js';
 // import './shop-products.js';
 // import './shop-cart.js';
 
-class MyView4 extends PageViewElement {
+class MyFooter extends PageViewElement {
 
   render() {
     return html`
         <p>
-          <img name="usaMap" src="../../images/product-categories-type-1.jpg" usemap="#m_usaMap" border="0" width="100%">
+          <img name="usaMap" src="../../images/header.jpeg" usemap="#m_usaMap" border="0" width="100%">
         </p>
         
         <map name="m_usaMap">
           <!-- A -->
-          <area shape="poly" coords="65 365,941 365,941 1045,65 1045" href="view5" title="Alabama">
+          <area shape="poly" coords="65 365,941 365,941 1045,65 1045" href="#" title="Alabama">
         </map>
     `;
   }
 }
 
-window.customElements.define('my-view4', MyView4);
+window.customElements.define('my-footer', MyFooter);
